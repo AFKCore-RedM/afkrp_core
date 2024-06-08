@@ -15,6 +15,26 @@ CreateThread(function()
 	end
 end)
 
+function defaultPedSetup(ped)
+    EquipMetaPedOutfitPreset(ped, 3)
+    UpdatePedVariation()
+end
+
+function loadModel(sex)
+    if not HasModelLoaded(sex) then
+        RequestModel(sex, false)
+        repeat Wait(0) until HasModelLoaded(sex)
+    end
+end
+
+function createPlayerModel(model)
+    loadModel(model)
+    SetPlayerModel(PlayerId(), joaat(model), false)
+    SetModelAsNoLongerNeeded(model)
+    UpdatePedVariation(PlayerPedId())
+    defaultPedSetup(PlayerPedId())
+end
+
 RegisterNetEvent('afk:playerLoaded')
 AddEventHandler('afk:playerLoaded', function(xPlayer)
     AFK.PlayerData = xPlayer
@@ -27,6 +47,8 @@ AddEventHandler('afk:playerLoaded', function(xPlayer)
         skipFade = false
     }, function()
     end)
+
+    createPlayerModel('mp_male')
 end)
 
 RegisterCommand("afk", function(source, args, rawCommand)

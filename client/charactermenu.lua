@@ -61,6 +61,10 @@ function openSelectionMenu()
 				-- EnableSelectionPrompts(menu)
                 print(data.current.index)
                 print("choose")
+
+                local ped = PlayerPedId()
+                EquipMetaPedOutfit(ped, 0x86155956)
+                UpdatePedVariation(ped, false, true, true, true, false)
 			end
 
 			if (data.current.value == "create") then
@@ -73,6 +77,10 @@ function openSelectionMenu()
 				-- TriggerEvent("vorpcharacter:startCharacterCreator")
                 print(data.current.index)
                 print("create")
+
+                local ped = PlayerPedId()
+                EquipMetaPedOutfit(ped, 0x74D74B1C)
+                UpdatePedVariation(ped, false, true, true, true, false)
 			end
 		end, function(menu, data)
 

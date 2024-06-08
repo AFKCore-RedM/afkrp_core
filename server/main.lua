@@ -54,8 +54,8 @@ AddEventHandler('playerDropped', function (reason)
     local _source = source
     local steamIdentifier = GetSteamID(_source)
 
-    if players[steamIdentifier] then
-        players[steamIdentifier] = nil
+    if AFK.Players[steamIdentifier] then
+        AFK.Players[steamIdentifier] = nil
     end
 
     print(json.encode(players, {indent = true, sort_keys = true}))
